@@ -1,16 +1,186 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的个人网站</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>yespplz · 作品集</title>
+  <meta name="description" content="yespplz 的个人主页与作品集" />
+
+  <!-- 简洁内置样式：自适应、暗色模式、卡片布局 -->
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 50px; }
-    h1 { color: #007acc; }
+    :root{
+      --bg:#0b0c0f; --panel:#121418; --text:#e6e8ee; --muted:#a5adba; --brand:#64b5ff; --edge:#1b1f27;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f7fb; --panel:#ffffff; --text:#111318; --muted:#566074; --brand:#0b72ff; --edge:#e9ecf2;
+        --shadow: 0 10px 30px rgba(12,20,40,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.9}
+    .wrap{max-width:1040px;margin:auto;padding:28px 18px 80px}
+    header{display:flex;gap:22px;align-items:center;margin:10px 0 26px}
+    .pfp{
+      width:84px;height:84px;border-radius:20px;overflow:hidden;flex:0 0 84px;border:1px solid var(--edge);box-shadow:var(--shadow)
+    }
+    .pfp img{width:100%;height:100%;object-fit:cover}
+    .id h1{margin:0 0 6px;font-size:30px;letter-spacing:.3px}
+    .id p{margin:0;color:var(--muted)}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--edge);border-radius:12px;background:var(--panel);
+      transition:.2s; box-shadow:var(--shadow)
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .grid{
+      display:grid;gap:16px;margin-top:22px;
+      grid-template-columns:repeat(12,1fr)
+    }
+    .col-8{grid-column:span 8}
+    .col-4{grid-column:span 4}
+    @media (max-width:960px){.col-8,.col-4{grid-column:1/-1}}
+    section{background:var(--panel);border:1px solid var(--edge);border-radius:18px;padding:18px 18px 8px;box-shadow:var(--shadow)}
+    section h2{margin:4px 6px 10px;font-size:20px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;padding:6px}
+    .tag{
+      padding:6px 10px;border-radius:999px;border:1px dashed var(--edge);color:var(--muted);background:transparent
+    }
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;padding:6px}
+    .card{
+      border:1px solid var(--edge);border-radius:14px;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
+      display:flex;flex-direction:column;gap:8px;min-height:150px
+    }
+    .card h3{margin:0 0 4px;font-size:18px}
+    .meta{color:var(--muted);font-size:14px}
+    .foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+    .pill{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--edge);color:var(--muted)}
+    footer{margin-top:26px;color:var(--muted);text-align:center}
+    .switch{margin-left:auto}
+    .hr{height:1px;background:var(--edge);margin:8px 0}
+    .note{color:var(--muted);font-size:14px;margin:6px 6px 12px}
   </style>
 </head>
 <body>
-  <h1>你好，我是 FZN！</h1>
-  <p>欢迎来到我的个人网站 🎉</p>
+  <div class="wrap">
+
+    <!-- 顶部资料 -->
+    <header>
+      <!-- 头像：换成你的图片地址；没有也没关系 -->
+      <div class="pfp">
+        <img src="https://avatars.githubusercontent.com/u/0?v=4" alt="avatar" />
+      </div>
+      <div class="id">
+        <h1>yespplz</h1>
+        <p>🚀 全栈学习中 · 对前端/自动化/AI 应用感兴趣</p>
+        <div class="links">
+          <a class="btn" href="https://github.com/yespplz" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="mailto:youremail@example.com">Email</a>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">简历 / Resume</a>
+          <button class="btn switch" id="modeBtn" type="button">切换明暗</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- 左侧：项目 -->
+      <div class="col-8">
+        <section>
+          <h2>项目 Projects</h2>
+          <div class="note">挑 3–6 个代表作，写清楚做了什么、用了什么技术、能点开的演示或代码。</div>
+          <div class="cards">
+            <article class="card">
+              <h3>Owensignals · 量化信号实验</h3>
+              <div class="meta">Python · Backtesting · 可视化</div>
+              <p>用历史数据做策略回测与指标可视化，探索风险控制与资金管理。</p>
+              <div class="foot">
+                <a href="#" class="btn">查看演示</a>
+                <span class="pill">2025</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>Portfolio · 个人主页</h3>
+              <div class="meta">HTML · CSS · 原生 JS</div>
+              <p>本页面源码，展示技能、项目与联系方式，支持暗色主题。</p>
+              <div class="foot">
+                <a href="https://github.com/yespplz/yespplz.github.io" class="btn" target="_blank" rel="noreferrer">源码</a>
+                <span class="pill">开源</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>小工具：截图标注/格式转换</h3>
+              <div class="meta">Node · CLI · 自动化</div>
+              <p>一键批量处理图片/文本的小工具集合，提升日常效率。</p>
+              <div class="foot">
+                <a href="#" class="btn">README</a>
+                <span class="pill">实用</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section>
+          <h2>经历 Experience</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>独立学习 / Side Projects</h3>
+              <div class="meta">2024 – 至今</div>
+              <p>专注前端基础、自动化脚本与部署流程，持续构建开源项目。</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <!-- 右侧：技能/联系 -->
+      <div class="col-4">
+        <section>
+          <h2>技能 Skills</h2>
+          <div class="tags">
+            <span class="tag">HTML/CSS/JS</span>
+            <span class="tag">Git & GitHub</span>
+            <span class="tag">Python</span>
+            <span class="tag">数据可视化</span>
+            <span class="tag">自动化脚本</span>
+          </div>
+          <div class="hr"></div>
+          <h2>联系方式 Contact</h2>
+          <div class="tags">
+            <a class="tag" href="mailto:youremail@example.com">youremail@example.com</a>
+            <a class="tag" href="https://github.com/yespplz" target="_blank" rel="noreferrer">@yespplz</a>
+          </div>
+        </section>
+
+        <section>
+          <h2>关于我 About</h2>
+          <p>喜欢把想法做成小产品。正在练习把复杂问题拆解成清晰的界面与可复用的代码。</p>
+        </section>
+      </div>
+    </div>
+
+    <footer>
+      © <span id="y"></span> yespplz · Built with GitHub Pages
+    </footer>
+  </div>
+
+  <script>
+    // 年份 & 主题切换
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const modeBtn = document.getElementById('modeBtn');
+    modeBtn.addEventListener('click', ()=>{
+      const dark = document.documentElement.dataset.theme !== 'light';
+      document.documentElement.dataset.theme = dark ? 'light' : 'dark';
+      // 简单切换：当 data-theme="light" 时强制使用浅色变量
+      if(!dark){
+        document.documentElement.style.colorScheme='light';
+      }else{
+        document.documentElement.style.colorScheme='dark';
+      }
+    });
+  </script>
 </body>
 </html>
